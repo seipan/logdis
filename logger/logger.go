@@ -10,11 +10,15 @@ func Debug(Fields, string) {
 
 }
 
+func Error(Fields, string) {
+
+}
+
 func Warn(Fields, string) {
 
 }
 
-func Error(Fields, string) {
+func Fatal(Fields, string) {
 
 }
 
