@@ -40,14 +40,13 @@ func onMessageCreate(s *discordgo.Session, m *discordgo.MessageCreate) {
 	u := m.Author
 	fmt.Printf("%20s %20s(%20s) > %s\n", m.ChannelID, u.Username, u.ID, m.Content)
 	if u.ID != clientId {
-		sendMessage(s, m.ChannelID, u.Mention()+"なんか喋った!")
+		sendMessage(s, m.ChannelID, "")
 		sendReply(s, m.ChannelID, "test", m.Reference())
 	}
 }
 
 func sendMessage(s *discordgo.Session, channelID string, msg string) {
 	_, err := s.ChannelMessageSend(channelID, msg)
-	log.Println(">>> " + msg)
 	if err != nil {
 		log.Println("Error sending message: ", err)
 	}
