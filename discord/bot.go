@@ -11,14 +11,25 @@ import (
 	"github.com/seipan/Go-logger-discord/utils"
 )
 
-func ConnectBot() {
-	discord, err := discordgo.New("Bot " + utils.GetEnvOrDefault("discord_token", ""))
-	if err != nil {
-		log.Println(err)
-	}
+type Bot struct {
+	bot *discordgo.Session
+}
 
-	discord.AddHandler(onMessageCreate)
-	err = discord.Open()
+func NewDiscordBot() *Bot {
+	bot := &Bot{}
+	sesion, err := discordgo.New("Bot " + utils.GetEnvOrDefault("discord_token", ""))
+	if err != nil {
+		panic(err)
+	}
+	bot.bot = sesion
+	return bot
+}
+
+func ConnectBot() {
+	discord := NewDiscordBot()
+
+	discord.bot.AddHandler(onMessageCreate)
+	err := discord.bot.Open()
 	if err != nil {
 		log.Println(err)
 	}
@@ -27,7 +38,7 @@ func ConnectBot() {
 	signal.Notify(stopBot, syscall.SIGINT, syscall.SIGTERM, os.Interrupt, os.Kill)
 	<-stopBot
 
-	err = discord.Close()
+	err = discord.bot.Close()
 	if err != nil {
 		log.Println(err)
 	}
