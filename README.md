@@ -1,4 +1,4 @@
 # Go-logger-discord
 
-logger作りたい。
+golang logger for dicord
 
