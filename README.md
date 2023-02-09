@@ -1,4 +1,4 @@
-# Go-logger-discord
+Logdis
 
 golang logger for dicord
 
