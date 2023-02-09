@@ -1,4 +1,4 @@
-Logdis
+## Logdis
 
 golang logger for dicord
 
