@@ -1,4 +1,4 @@
-package discord
+package logdis
 
 import (
 	"fmt"
@@ -8,7 +8,7 @@ import (
 	"syscall"
 
 	"github.com/bwmarrin/discordgo"
-	"github.com/seipan/Go-logger-discord/utils"
+	"github.com/seipan/Logdis/utils"
 )
 
 type Bot struct {

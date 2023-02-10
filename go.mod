@@ -1,4 +1,4 @@
-module github.com/seipan/Go-logger-discord
+module github.com/seipan/Logdis
 
 go 1.19
 

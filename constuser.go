@@ -1,4 +1,4 @@
-package logger
+package logdis
 
 const (
 	DebugUser = "@Debug"
