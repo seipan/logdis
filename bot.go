@@ -15,9 +15,9 @@ type Bot struct {
 	bot *discordgo.Session
 }
 
-func NewDiscordBot() *Bot {
+func NewDiscordBot(token string) *Bot {
 	bot := &Bot{}
-	sesion, err := discordgo.New("Bot " + utils.GetEnvOrDefault("discord_token", ""))
+	sesion, err := discordgo.New(token)
 	if err != nil {
 		panic(err)
 	}
@@ -26,7 +26,7 @@ func NewDiscordBot() *Bot {
 }
 
 func ConnectBot() {
-	discord := NewDiscordBot()
+	discord := NewDiscordBot(utils.GetEnvOrDefault("discord_token", ""))
 
 	discord.bot.AddHandler(onMessageCreate)
 	err := discord.bot.Open()
