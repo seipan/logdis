@@ -3,8 +3,10 @@ package logdis
 type Fields map[string]interface{}
 
 func Info(f Fields, message string, user string) {
-	str := parse(f, message, user)
+	str := "Info : "
+	str += parse(f, message, user)
 
+	
 }
 
 func Infoln(Fields, message string, user string) {
