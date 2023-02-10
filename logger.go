@@ -6,49 +6,49 @@ func Info(f Fields, message string, user string) {
 	str := "Info : "
 	str += parse(f, message, user)
 
-	
 }
 
-func Infoln(Fields, message string, user string) {
-
+func Infoln(f Fields, message string, user string) {
+	str := "Info : "
+	str += parse(f, message, user)
 }
 
-func Debug(Fields, message string, user string) {
-
-}
-
-func Debugln(Fields, message string, user string) {
+func Debug(f Fields, message string, user string) {
 
 }
 
-func Error(Fields, message string, user string) {
+func Debugln(f Fields, message string, user string) {
 
 }
 
-func Errorln(Fields, message string, user string) {
+func Error(f Fields, message string, user string) {
 
 }
 
-func Warn(Fields, message string, user string) {
+func Errorln(f Fields, message string, user string) {
 
 }
 
-func Warnln(Fields, message string, user string) {
+func Warn(f Fields, message string, user string) {
 
 }
 
-func Fatal(Fields, message string, user string) {
+func Warnln(f Fields, message string, user string) {
 
 }
 
-func Fatalln(Fields, message string, user string) {
+func Fatal(f Fields, message string, user string) {
 
 }
 
-func Panic(Fields, message string, user string) {
+func Fatalln(f Fields, message string, user string) {
 
 }
 
-func Panicln(Fields, message string, user string) {
+func Panic(f Fields, message string, user string) {
+
+}
+
+func Panicln(f Fields, message string, user string) {
 
 }
