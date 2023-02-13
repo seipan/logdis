@@ -1,4 +1,4 @@
 ## Logdis
 
-golang logger for dicord bot
+golang logger for dicord
 
