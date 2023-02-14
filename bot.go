@@ -1,7 +1,6 @@
 package logdis
 
 import (
-	"fmt"
 	"log"
 	"os"
 	"os/signal"
@@ -25,7 +24,7 @@ func NewDiscordBot(token string) *Bot {
 }
 
 func ConnectBot(discord *Bot) {
-	discord.bot.AddHandler(onMessageCreate)
+	discord.bot.AddHandler(discord.onMessageCreate)
 	err := discord.bot.Open()
 	if err != nil {
 		log.Println(err)
@@ -38,29 +37,5 @@ func ConnectBot(discord *Bot) {
 	err = discord.bot.Close()
 	if err != nil {
 		log.Println(err)
-	}
-}
-
-func onMessageCreate(s *discordgo.Session, m *discordgo.MessageCreate) {
-	clientId := os.Getenv("CLIENT_ID")
-	u := m.Author
-	fmt.Printf("%20s %20s(%20s) > %s\n", m.ChannelID, u.Username, u.ID, m.Content)
-	if u.ID != clientId {
-		sendMessage(s, m.ChannelID, "")
-		sendReply(s, m.ChannelID, "test", m.Reference())
-	}
-}
-
-func sendMessage(s *discordgo.Session, channelID string, msg string) {
-	_, err := s.ChannelMessageSend(channelID, msg)
-	if err != nil {
-		log.Println("Error sending message: ", err)
-	}
-}
-
-func sendReply(s *discordgo.Session, channelID string, msg string, reference *discordgo.MessageReference) {
-	_, err := s.ChannelMessageSendReply(channelID, msg, reference)
-	if err != nil {
-		log.Println("Error sending message: ", err)
 	}
 }
