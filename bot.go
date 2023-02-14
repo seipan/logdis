@@ -8,7 +8,6 @@ import (
 	"syscall"
 
 	"github.com/bwmarrin/discordgo"
-	"github.com/seipan/Logdis/utils"
 )
 
 type Bot struct {
@@ -25,9 +24,7 @@ func NewDiscordBot(token string) *Bot {
 	return bot
 }
 
-func ConnectBot() {
-	discord := NewDiscordBot(utils.GetEnvOrDefault("discord_token", ""))
-
+func ConnectBot(discord *Bot) {
 	discord.bot.AddHandler(onMessageCreate)
 	err := discord.bot.Open()
 	if err != nil {
@@ -42,8 +39,6 @@ func ConnectBot() {
 	if err != nil {
 		log.Println(err)
 	}
-
-	return
 }
 
 func onMessageCreate(s *discordgo.Session, m *discordgo.MessageCreate) {
