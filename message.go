@@ -13,7 +13,7 @@ func (b *Bot) onMessageCreate(s *discordgo.Session, m *discordgo.MessageCreate) 
 	u := m.Author
 	fmt.Printf("%20s %20s(%20s) > %s\n", m.ChannelID, u.Username, u.ID, m.Content)
 	if u.ID != clientId {
-		b.sendMessage(s, m.ChannelID, "msg")
+		b.sendMessage(s, m.ChannelID, "hello logger")
 	}
 }
 
