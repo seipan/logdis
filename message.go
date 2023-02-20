@@ -12,6 +12,7 @@ func (b *Bot) onMessageCreate(s *discordgo.Session, m *discordgo.MessageCreate) 
 	clientId := os.Getenv("CLIENT_ID")
 	u := m.Author
 	fmt.Printf("%20s %20s(%20s) > %s\n", m.ChannelID, u.Username, u.ID, m.Content)
+	b.channelId = m.ChannelID
 	if u.ID != clientId {
 		b.sendMessage(s, m.ChannelID, "hello logger")
 	}

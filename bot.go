@@ -10,7 +10,8 @@ import (
 )
 
 type Bot struct {
-	bot *discordgo.Session
+	bot       *discordgo.Session
+	channelId string
 }
 
 func NewDiscordBot(token string) *Bot {
