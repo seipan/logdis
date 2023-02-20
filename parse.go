@@ -5,6 +5,10 @@ import (
 )
 
 func parse(f Fields, message string, user string) string {
+	if CheckDefaultUser(user) {
+		user = "@" + user
+	}
+
 	var resstr string
 	resstr = user + "\n"
 
