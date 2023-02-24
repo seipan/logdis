@@ -2,7 +2,6 @@ package logdis
 
 import (
 	"fmt"
-	"log"
 	"os"
 
 	"github.com/bwmarrin/discordgo"
@@ -21,6 +20,6 @@ func (b *Bot) onMessageCreate(s *discordgo.Session, m *discordgo.MessageCreate) 
 func (b *Bot) sendMessage(s *discordgo.Session, channelID string, msg string) {
 	_, err := s.ChannelMessageSend(channelID, msg)
 	if err != nil {
-		log.Println("Error sending message: ", err)
+		panic(fmt.Errorf("Error sending message: %w", err))
 	}
 }
