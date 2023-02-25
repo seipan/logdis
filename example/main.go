@@ -1,7 +1,7 @@
 package main
 
 import (
-	logdis "github.com/seipan/logdis"
+	"github.com/seipan/logdis"
 )
 
 const (
@@ -12,5 +12,5 @@ func main() {
 	bot := logdis.NewDiscordBot(YOURTOKEN)
 	logdis.ConnectBot(bot)
 
-	bot.Infoln(nil, "hi my first message", logdis.AllUser)
+	bot.Infoln(map[string]interface{}{"type": "my first message"}, "hi my first message", logdis.AllUser)
 }
