@@ -1,6 +1,6 @@
 ## Usage
 
-# However, this oss is not yet complete, and we will continue to develop it, so please wait a little before actually using it!
+### However, this oss is not yet complete, and we will continue to develop it, so please wait a little before actually using it!
 
 You need to create a discordbot on this site (https://discord.com/developers/applications)
 
