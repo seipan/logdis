@@ -7,4 +7,10 @@ You can use any name you like
 
 Please copy and use the "token" after creating the bot.
 
+And Import the package into your project.
+
+```go
+import "github.com/seipan/logdis"
+```
+
 You can see a real example on this page. (https://github.com/seipan/logdis/blob/main/example/main.go)
