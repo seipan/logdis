@@ -1,4 +1,9 @@
 ## Usage
+You need to create a discordbot on this site (https://discord.com/developers/applications)
 
-golang logger for dicord
+You can use any name you like
+
+![image](https://user-images.githubusercontent.com/88176012/221624045-dacde7e1-f2fd-491e-90f0-c7188563b714.png)
+
+Please copy and use the "token" after creating the bot.
 
