@@ -22,15 +22,11 @@ func sendLogToDiscord(whurl string, dw *discordWebhook) {
 	req.Header.Set("Content-Type", "application/json")
 
 	client := http.Client{}
-	resp, err := client.Do(req)
+
+	_, err = client.Do(req)
 	if err != nil {
 		fmt.Println("client err:", err)
 		return
-	}
-	if resp.StatusCode == 204 {
-		fmt.Println("sent", dw)
-	} else {
-		fmt.Printf("%#v\n", resp)
 	}
 }
 
