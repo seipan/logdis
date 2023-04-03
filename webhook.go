@@ -1,7 +1,38 @@
 package logdis
 
+import (
+	"bytes"
+	"encoding/json"
+	"fmt"
+	"net/http"
+)
 
+func sendLogToDiscord(whurl string, dw *discordWebhook) {
+	j, err := json.Marshal(dw)
+	if err != nil {
+		fmt.Println("json err:", err)
+		return
+	}
 
+	req, err := http.NewRequest("POST", whurl, bytes.NewBuffer(j))
+	if err != nil {
+		fmt.Println("new request err:", err)
+		return
+	}
+	req.Header.Set("Content-Type", "application/json")
+
+	client := http.Client{}
+	resp, err := client.Do(req)
+	if err != nil {
+		fmt.Println("client err:", err)
+		return
+	}
+	if resp.StatusCode == 204 {
+		fmt.Println("sent", dw) //成功
+	} else {
+		fmt.Printf("%#v\n", resp) //失敗
+	}
+}
 
 // Required to use discord webhook with Go
 type discordImg struct {
