@@ -28,9 +28,9 @@ func sendLogToDiscord(whurl string, dw *discordWebhook) {
 		return
 	}
 	if resp.StatusCode == 204 {
-		fmt.Println("sent", dw) //成功
+		fmt.Println("sent", dw)
 	} else {
-		fmt.Printf("%#v\n", resp) //失敗
+		fmt.Printf("%#v\n", resp)
 	}
 }
 
