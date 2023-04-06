@@ -22,3 +22,15 @@ func parse(f Fields, message string, user string) string {
 
 	return resstr
 }
+
+func setWebhookStruct(name string, img string) *discordWebhook {
+	dw := &discordWebhook{
+		UserName:  name,
+		AvatarURL: img,
+	}
+	return dw
+}
+
+func setWebfookMessage(dis *discordWebhook) *discordWebhook {
+	return dis
+}
