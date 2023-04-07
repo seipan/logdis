@@ -1,3 +1,5 @@
+## logdis
+golang logger for discord bot 
 ## Usage
 
 
