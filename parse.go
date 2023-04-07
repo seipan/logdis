@@ -32,16 +32,22 @@ func setWebhookStruct(name string, img string) *discordWebhook {
 }
 
 func setWebfookMessage(dis *discordWebhook, f Fields, message string, user string, level string) *discordWebhook {
+	disf := []discordField{}
+	for i, v := range f {
+		d := discordField{
+			Name:  i,
+			Value: v,
+		}
+		disf = append(disf, d)
+	}
+
 	dis.Embeds = []discordEmbed{
 		discordEmbed{
 			Title:  level,
 			Desc:   message,
 			Color:  0x550000,
 			Author: discordAuthor{Name: user},
-			Fields: []discordField{
-				discordField{Name: "フィールド名1", Value: "フィールド値1", Inline: true},
-				discordField{Name: "フィールド名2", Value: "フィールド値2", Inline: true},
-			},
+			Fields: disf,
 		},
 	}
 	return dis
