@@ -30,6 +30,27 @@ func sendLogToDiscord(whurl string, dw *discordWebhook) {
 	}
 }
 
+func setWebhookStruct(name string, img string) *discordWebhook {
+	dw := &discordWebhook{
+		UserName:  name,
+		AvatarURL: img,
+	}
+	return dw
+}
+
+func setWebfookMessage(dis *discordWebhook, message string, user string, level string) *discordWebhook {
+	dis.Content = user
+
+	dis.Embeds = []discordEmbed{
+		discordEmbed{
+			Title: level,
+			Desc:  message,
+			Color: 0x550000,
+		},
+	}
+	return dis
+}
+
 // Required to use discord webhook with Go
 type discordImg struct {
 	URL string `json:"url"`
