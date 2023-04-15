@@ -32,6 +32,7 @@ func setWebhookStruct(name string, img string) *discordWebhook {
 }
 
 func setWebfookMessage(dis *discordWebhook, f Fields, message string, user string, level string) *discordWebhook {
+	dis.Content = user
 	disf := []discordField{}
 	for i, v := range f {
 		d := discordField{
@@ -46,7 +47,6 @@ func setWebfookMessage(dis *discordWebhook, f Fields, message string, user strin
 			Title:  level,
 			Desc:   message,
 			Color:  0x550000,
-			Author: discordAuthor{Name: user},
 			Fields: disf,
 		},
 	}
