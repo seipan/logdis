@@ -10,10 +10,10 @@ func parse(f Fields, message string, user User) string {
 	}
 
 	var resstr string
-	resstr = user.String() + "\n"
+	resstr = user.String() + " "
 
 	for key, value := range f {
-		str := fmt.Sprintf("%s : %s", key, value)
+		str := fmt.Sprintf("{ %s : %s }", key, value)
 		resstr += str
 	}
 	resstr += " { message : "
