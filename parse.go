@@ -4,13 +4,13 @@ import (
 	"fmt"
 )
 
-func parse(f Fields, message string, user string) string {
+func parse(f Fields, message string, user User) string {
 	if !CheckDefaultUser(user) {
 		user = "@" + user
 	}
 
 	var resstr string
-	resstr = user + "\n"
+	resstr = user.String() + "\n"
 
 	for key, value := range f {
 		str := fmt.Sprintf("%s : %s", key, value)
