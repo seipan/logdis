@@ -56,7 +56,7 @@ func (l *Logger) Log(level Level, user string, args ...interface{}) {
 
 		// send log to discord
 		dis := setWebhookStruct(l.Name, l.Img)
-		dis = setWebfookMessage(dis, message, user, "INFO")
+		dis = setWebfookMessage(dis, message, user, level.String())
 		sendLogToDiscord(l.Webhook, dis)
 	}
 }
@@ -72,7 +72,7 @@ func (l *Logger) Logf(level Level, user string, format string, args ...interface
 
 		// send log to discord
 		dis := setWebhookStruct(l.Name, l.Img)
-		dis = setWebfookMessage(dis, message, user, "INFO")
+		dis = setWebfookMessage(dis, message, user, level.String())
 		sendLogToDiscord(l.Webhook, dis)
 	}
 }
