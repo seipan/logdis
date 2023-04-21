@@ -31,30 +31,26 @@ const (
 
 // Converts log level to string, returns unknown if log level is not expected.
 func (l Level) String() string {
-	str, err := l.MarshalText()
-	if err != nil {
-		return str
-	} else {
-		return "unknown"
-	}
+	str := l.MarshalText()
+	return str
 }
 
-func (l Level) MarshalText() (string, error) {
+func (l Level) MarshalText() string {
 	switch l {
 	case DebugLevel:
-		return "debug", nil
+		return "debug"
 	case InfoLevel:
-		return "info", nil
+		return "info"
 	case WarnLevel:
-		return "warn", nil
+		return "warn"
 	case ErrorLevel:
-		return "error", nil
+		return "error"
 	case PanicLevel:
-		return "panic", nil
+		return "panic"
 	case FatalLevel:
-		return "fatal", nil
+		return "fatal"
 	default:
-		return "", fmt.Errorf("not a valid logdis level %d", l)
+		return "unknown"
 	}
 }
 
