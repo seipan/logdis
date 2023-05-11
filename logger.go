@@ -39,6 +39,10 @@ func (l *Logger) check(level Level) bool {
 	return l.Level() <= level
 }
 
+func (l *Logger) SetLevel(level Level) {
+	atomic.StoreUint32((*uint32)(&l.level), uint32(level))
+}
+
 func (l *Logger) Level() Level {
 	return Level(atomic.LoadUint32((*uint32)(&l.level)))
 }
