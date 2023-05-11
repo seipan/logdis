@@ -1,5 +1,5 @@
 ## logdis
-golang logger for discord bot 
+golang logger for discord
 
 ## Usage
 First, get the webhook id of the discord channel you want the service to log
