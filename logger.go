@@ -36,7 +36,7 @@ func NewLogger(webhook string, img string, name string) *Logger {
 }
 
 func (l *Logger) check(level Level) bool {
-	return l.Level() >= level
+	return l.Level() <= level
 }
 
 func (l *Logger) Level() Level {
@@ -46,32 +46,35 @@ func (l *Logger) Level() Level {
 type Fields map[string]string
 
 func (l *Logger) Log(level Level, user string, args ...interface{}) {
-	message := ""
-	message = fmt.Sprint(args...)
+	if l.check(level) {
+		message := ""
+		message = fmt.Sprint(args...)
 
-	l.mutex.Lock()
-	defer l.mutex.Unlock()
-	log.Println(message)
+		l.mutex.Lock()
+		defer l.mutex.Unlock()
+		log.Println(message)
 
-	// send log to discord
-	dis := setWebhookStruct(l.Name, l.Img)
-	dis = setWebfookMessage(dis, message, user, level.String())
-	sendLogToDiscord(l.Webhook, dis)
-
+		// send log to discord
+		dis := setWebhookStruct(l.Name, l.Img)
+		dis = setWebfookMessage(dis, message, user, level.String())
+		sendLogToDiscord(l.Webhook, dis)
+	}
 }
 
 func (l *Logger) Logf(level Level, user string, format string, args ...interface{}) {
-	message := ""
-	message = fmt.Sprintf(format, args...)
+	if l.check(level) {
+		message := ""
+		message = fmt.Sprintf(format, args...)
 
-	l.mutex.Lock()
-	defer l.mutex.Unlock()
-	log.Println(message)
+		l.mutex.Lock()
+		defer l.mutex.Unlock()
+		log.Println(message)
 
-	// send log to discord
-	dis := setWebhookStruct(l.Name, l.Img)
-	dis = setWebfookMessage(dis, message, user, level.String())
-	sendLogToDiscord(l.Webhook, dis)
+		// send log to discord
+		dis := setWebhookStruct(l.Name, l.Img)
+		dis = setWebfookMessage(dis, message, user, level.String())
+		sendLogToDiscord(l.Webhook, dis)
+	}
 }
 
 func (l *Logger) Info(user string, i ...interface{}) {
