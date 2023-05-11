@@ -43,8 +43,6 @@ func (l *Logger) Level() Level {
 	return Level(atomic.LoadUint32((*uint32)(&l.level)))
 }
 
-type Fields map[string]string
-
 func (l *Logger) Log(level Level, user string, args ...interface{}) {
 	if l.check(level) {
 		message := ""
