@@ -1,5 +1,5 @@
 ## logdis
-golang logger for discord bot 
+golang logger for discord
 
 ## Usage
 First, get the webhook id of the discord channel you want the service to log
@@ -21,8 +21,7 @@ const (
 
 func main() {
 	log := logdis.NewLogger(YOURWEBHOOKURL, "", "logForExample")
-	log.Info(map[string]string{"message": "this is info log for test", "times": "1"}, "test message ", "by me")
-}
+	log.Info(logdis.AllUser.String(), "INFO :  ", map[string]string{"message": "this is info log for test", "times": "1"}, "test message ")
 ```
 
 
