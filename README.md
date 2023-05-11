@@ -21,8 +21,7 @@ const (
 
 func main() {
 	log := logdis.NewLogger(YOURWEBHOOKURL, "", "logForExample")
-	log.Info(map[string]string{"message": "this is info log for test", "times": "1"}, "test message ", "by me")
-}
+	log.Info(logdis.AllUser.String(), "INFO :  ", map[string]string{"message": "this is info log for test", "times": "1"}, "test message ")
 ```
 
 
