@@ -17,6 +17,24 @@ type Logger struct {
 	// ex) discord.com/api/webhooks/xxxxxxxxxxxxxx/xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 	Webhook string
 
+	// This is the webhook url for debug level log
+	DebugWebhook string
+
+	// This is the webhook url for info level log
+	InfoWebhook string
+
+	// This is the webhook url for warn level log
+	WarnWebhook string
+
+	// This is the webhook url for error level log
+	ErrorWebhook string
+
+	// This is the webhook url for panic level log
+	PanicWebhook string
+
+	// This is the webhook url for fatal level log
+	FatalWebhook string
+
 	// This is the url of the icon image of the bot that sends notifications to the discord
 	// ex) https://cdn-ak.f.st-hatena.com/images/fotolife/h/hikiniku0115/20190806/20190806000644.png
 	Img string
@@ -43,8 +61,52 @@ func (l *Logger) SetLevel(level Level) {
 	atomic.StoreUint32((*uint32)(&l.level), uint32(level))
 }
 
+// Sets the specified url in the webhook for each level
+func (l *Logger) SetDebugWebhook(webhook string) {
+	l.DebugWebhook = webhook
+}
+
+func (l *Logger) SetInfoWebhook(webhook string) {
+	l.InfoWebhook = webhook
+}
+
+func (l *Logger) SetWarnWebhook(webhook string) {
+	l.WarnWebhook = webhook
+}
+
+func (l *Logger) SetErrorWebhook(webhook string) {
+	l.ErrorWebhook = webhook
+}
+
+func (l *Logger) SetPanicWebhook(webhook string) {
+	l.PanicWebhook = webhook
+}
+
+func (l *Logger) SetFatalWebhook(webhook string) {
+	l.FatalWebhook = webhook
+}
+
 func (l *Logger) Level() Level {
 	return Level(atomic.LoadUint32((*uint32)(&l.level)))
+}
+
+func (l *Logger) resWebhookURLbyLevel(level Level) string {
+	switch level {
+	case DebugLevel:
+		return l.DebugWebhook
+	case InfoLevel:
+		return l.InfoWebhook
+	case WarnLevel:
+		return l.WarnWebhook
+	case ErrorLevel:
+		return l.ErrorWebhook
+	case PanicLevel:
+		return l.PanicWebhook
+	case FatalLevel:
+		return l.FatalWebhook
+	default:
+		return "unknown"
+	}
 }
 
 func (l *Logger) Log(level Level, user string, args ...interface{}) {
@@ -56,10 +118,15 @@ func (l *Logger) Log(level Level, user string, args ...interface{}) {
 		defer l.mutex.Unlock()
 		log.Println(message)
 
+		webhook := l.resWebhookURLbyLevel(level)
+		if webhook == "unknown" || webhook == "" {
+			webhook = l.Webhook
+		}
+
 		// send log to discord
 		dis := setWebhookStruct(l.Name, l.Img)
 		dis = setWebfookMessage(dis, message, user, level.String())
-		sendLogToDiscord(l.Webhook, dis)
+		sendLogToDiscord(webhook, dis)
 	}
 }
 
@@ -72,10 +139,15 @@ func (l *Logger) Logf(level Level, user string, format string, args ...interface
 		defer l.mutex.Unlock()
 		log.Println(message)
 
+		webhook := l.resWebhookURLbyLevel(level)
+		if webhook == "unknown" || webhook == "" {
+			webhook = l.Webhook
+		}
+
 		// send log to discord
 		dis := setWebhookStruct(l.Name, l.Img)
 		dis = setWebfookMessage(dis, message, user, level.String())
-		sendLogToDiscord(l.Webhook, dis)
+		sendLogToDiscord(webhook, dis)
 	}
 }
 
